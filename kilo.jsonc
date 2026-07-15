@@ -1,0 +1,7 @@
+{
+  // Kilo Code configuration — see https://kilo.ai/docs/customize
+  "instructions": [
+    ".kilo/rules/*.md",
+    "AGENTS.md"
+  ]
+}

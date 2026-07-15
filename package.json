@@ -16,10 +16,12 @@
     "ai-agent",
     "version-control"
   ],
+  "main": "plugins/atomic-hooks.ts",
   "files": [
     "AGENTS.md",
     "rules/",
     "agents/",
+    "plugins/",
     "hooks/",
     "skills/",
     "install.js",
@@ -30,5 +32,9 @@
   },
   "scripts": {
     "postinstall": "node install.js --silent"
+  },
+  "dependencies": {
+    "@kilocode/plugin": "7.4.9",
+    "@kilocode/plugin": ">=1.0.0"
   }
 }
