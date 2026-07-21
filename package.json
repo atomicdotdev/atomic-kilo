@@ -34,7 +34,6 @@
     "postinstall": "node install.js --silent"
   },
   "dependencies": {
-    "@kilocode/plugin": "7.4.9",
-    "@kilocode/plugin": ">=1.0.0"
+    "@kilocode/plugin": "7.4.11"
   }
 }
