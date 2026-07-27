@@ -4,6 +4,8 @@
 
 Automatic turn recording with AI provenance, intent tracking, and knowledge graph skills.
 
+> **Definitive source:** this repository lives on Atomic storage at `https://atomic.atomic.storage/workspaces/oss/projects/atomic-kilo/code`. The GitHub repo is a mirror.
+
 ## What it does
 
 - **1 session = 1 view** — a draft view is created automatically when you start a session
@@ -16,43 +18,17 @@ Automatic turn recording with AI provenance, intent tracking, and knowledge grap
 
 ### 1. Global setup (once)
 
-Symlinks rules, agent mode, and AGENTS.md into `~/.config/kilo/` so they apply to **every** project.
+Requires the [Atomic VCS](https://atomic.dev) CLI on your PATH. Then:
 
 ```bash
-git clone https://github.com/atomicdotdev/atomic-kilo
-cd atomic-kilo
-./install.sh
+atomic agent enable --agent kilo
 ```
 
-Or from npm:
-
-```bash
-npx atomic-kilo
-```
+The enable command syncs the package from Atomic storage and symlinks the rules, agent mode, AGENTS.md, and plugin into `~/.config/kilo/` so they apply to **every** project.
 
 ### 2. Per-project setup
 
 Set up a specific project with AGENTS.md, kilo.jsonc, and Atomic hooks:
-
-```bash
-./install.sh --project /path/to/my-project
-```
-
-Or from npm:
-
-```bash
-npx atomic-kilo --project /path/to/my-project
-```
-
-This does three things:
-
-1. Copies `AGENTS.md` to the project root (Kilo auto-discovers it)
-2. Creates `kilo.jsonc` if it doesn't exist
-3. Runs `atomic agent enable --agent kilo` to wire up hook recording
-
-### 3. Enable hooks in an Atomic repo (manual)
-
-If you skip the `--project` flag or need to do it later:
 
 ```bash
 cd /path/to/my-project
@@ -60,11 +36,27 @@ atomic init                         # create .atomic/ repo (if not done)
 atomic agent enable --agent kilo    # enable Atomic hook recording
 ```
 
-### Both at once
+Then copy `AGENTS.md` to the project root (Kilo auto-discovers it) and create `kilo.jsonc` if it doesn't exist.
+
+### Development install
+
+From a local checkout:
 
 ```bash
-./install.sh --global --project /path/to/my-project
+git clone https://github.com/atomicdotdev/atomic-kilo
+cd atomic-kilo
+atomic agent enable --agent kilo --from .
 ```
+
+Or the legacy script path:
+
+```bash
+./install.sh                                          # global setup
+./install.sh --project /path/to/my-project            # per-project setup
+./install.sh --global --project /path/to/my-project   # both at once
+```
+
+The per-project script copies `AGENTS.md` to the project root, creates `kilo.jsonc` if it doesn't exist, and runs `atomic agent enable --agent kilo` to wire up hook recording.
 
 ### What global install does
 
@@ -171,7 +163,7 @@ atomic agent attest
 ### Global
 
 ```bash
-npx atomic-kilo --uninstall
+atomic agent disable --agent kilo
 ```
 
 ### Per-project
