@@ -5,17 +5,29 @@ version = "1.0.0"
 [requires]
 atomic = ">=0.11.0"
 
-[[file]]
-src = "rules/atomic.md"
-dst = "~/.config/kilo/rules/atomic.md"
+[skills-source]
+package = "atomic-skills"
 
-[[file]]
-src = "agents/atomic.md"
-dst = "~/.config/kilo/agent/atomic.md"
+[skills]
+install = "all"
+dst_pattern = "~/.config/kilo/skills/{name}/SKILL.md"
 
-[[file]]
+[[skill]]
 src = "AGENTS.md"
 dst = "~/.config/kilo/AGENTS.md"
+
+[[skill]]
+src = "AGENTS.md"
+dst = "~/.config/kilo/rules/atomic.md"
+
+[[repo-file]]
+src = "AGENTS.md"
+dst = "AGENTS.md"
+
+[agent-definition]
+src = "agents/atomic.md.frontmatter"
+body_from = "atomic-skills:AGENTS.md"
+slot = "~/.config/kilo/agent/atomic.md"
 
 [[file]]
 src = "plugins/atomic-hooks.ts"
